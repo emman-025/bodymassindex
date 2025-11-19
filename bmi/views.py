@@ -1,6 +1,5 @@
 from django.shortcuts import render
-
-from django.shortcuts import render
+from .models import BMIRecord
 
 
 def convert_to_metric(weight, weight_unit, height_unit, height_m, height_cm, height_ft, height_in):
@@ -89,17 +88,30 @@ def bmi_form(request):
         bmi = weight_kg / (height_m_val ** 2)
         category = classify_bmi(bmi)
 
+        # 🔹 save to database (for history/dashboards)
+        sex = request.POST.get("sex")  # assuming your form has name="sex"
+        BMIRecord.objects.create(
+            user=request.user if request.user.is_authenticated else None,
+            sex=sex or "other",
+            weight_kg=weight_kg,
+            height_m=height_m_val,
+            bmi_value=bmi,
+            category=category,
+            original_weight_unit=weight_unit,
+            original_height_unit=height_unit if height_unit != "ft" else "ft_in",
+        )
+
         context["result"] = round(bmi, 2)
         context["category"] = category
-        context["sex"] = sex  # if you want to use it in templates
 
-        # 🔹 render different result pages
+        # render different page depending on category
         if category == "underweight":
             return render(request, "bmi/underweight.html", context)
         elif category == "healthy":
             return render(request, "bmi/healthy.html", context)
         else:
             return render(request, "bmi/overweight.html", context)
+
 
     # GET request → just show form
     return render(request, "bmi/bmi_form.html", context)
