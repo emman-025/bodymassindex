@@ -2,6 +2,14 @@ from django.shortcuts import render
 from .models import BMIRecord
 
 
+def calculate_health_risk(bmi, age=None):
+    risk = "Low"
+    if bmi >= 25 and age and int(age) > 40:
+        risk = "Medium"
+    if bmi >= 30 and age and int(age) > 35:
+        risk = "High"
+    return risk
+
 def convert_to_metric(weight, weight_unit, height_unit, height_m, height_cm, height_ft, height_in):
     """
     Convert all inputs to kg and meters.
