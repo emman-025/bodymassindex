@@ -1,0 +1,99 @@
+{% extends "bmi/base.html" %}
+{% block title %}BMI Calculator{% endblock %}
+
+{% block content %}
+<form method="post" class="space-y-6">
+    {% csrf_token %}
+
+    {% if error %}
+        <div class="bg-red-900/40 border border-red-500 text-red-200 text-sm rounded-lg p-3 mb-2">
+            {{ error }}
+        </div>
+    {% endif %}
+
+    <!-- Weight -->
+    <div>
+        <label class="block text-sm font-medium mb-1">Weight</label>
+        <div class="flex gap-2">
+            <input
+                type="number"
+                step="0.1"
+                name="weight"
+                required
+                class="flex-1 px-3 py-2 rounded-lg bg-slate-800 border border-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-400"
+                placeholder="e.g. 70"
+            >
+            <select
+                name="weight_unit"
+                class="px-3 py-2 rounded-lg bg-slate-800 border border-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-400"
+            >
+                <option value="kg">kg</option>
+                <option value="lb">lb</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Height -->
+    <div>
+        <label class="block text-sm font-medium mb-1">Height</label>
+        <p class="text-xs text-slate-400 mb-1">
+            You can use meters, centimeters, or feet + inches. Fill in only the fields for the unit you select.
+        </p>
+
+        <div class="flex gap-2 mb-3">
+            <select
+                name="height_unit"
+                class="px-3 py-2 rounded-lg bg-slate-800 border border-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-400"
+            >
+                <option value="m">Meters</option>
+                <option value="cm">Centimeters</option>
+                <option value="ft">Feet + Inches</option>
+            </select>
+        </div>
+
+        <div class="space-y-2">
+            <div class="flex gap-2">
+                <input
+                    type="number"
+                    step="0.01"
+                    name="height_m"
+                    class="flex-1 px-3 py-2 rounded-lg bg-slate-800 border border-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-400"
+                    placeholder="Height in meters (e.g. 1.75)"
+                >
+            </div>
+            <div class="flex gap-2">
+                <input
+                    type="number"
+                    step="1"
+                    name="height_cm"
+                    class="flex-1 px-3 py-2 rounded-lg bg-slate-800 border border-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-400"
+                    placeholder="Height in centimeters (e.g. 175)"
+                >
+            </div>
+            <div class="flex gap-2">
+                <input
+                    type="number"
+                    step="1"
+                    name="height_ft"
+                    class="flex-1 px-3 py-2 rounded-lg bg-slate-800 border border-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-400"
+                    placeholder="Feet (e.g. 5)"
+                >
+                <input
+                    type="number"
+                    step="0.1"
+                    name="height_in"
+                    class="flex-1 px-3 py-2 rounded-lg bg-slate-800 border border-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-400"
+                    placeholder="Inches (e.g. 9)"
+                >
+            </div>
+        </div>
+    </div>
+
+    <button
+        type="submit"
+        class="w-full mt-2 py-2.5 rounded-lg bg-sky-500 hover:bg-sky-400 text-slate-950 font-semibold transition"
+    >
+        Calculate BMI
+    </button>
+</form>
+{% endblock %}

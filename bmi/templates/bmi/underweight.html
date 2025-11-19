@@ -1,0 +1,25 @@
+{% extends "bmi/base.html" %}
+{% block title %}Underweight Result{% endblock %}
+
+{% block content %}
+<div class="space-y-4">
+    <div class="text-center">
+        <p class="text-sm text-slate-400 mb-1">Your BMI</p>
+        <p class="text-4xl font-bold text-yellow-300">{{ result }}</p>
+        <p class="mt-2 text-lg text-yellow-200">Category: Underweight</p>
+    </div>
+
+    <div class="bg-slate-800 rounded-xl p-4 border border-yellow-500/50">
+        <h2 class="font-semibold mb-2 text-yellow-200">Recommendations</h2>
+        <ul class="list-disc list-inside text-sm text-slate-200 space-y-1">
+            <li>Consider speaking with a GP or nutritionist about safe weight gain.</li>
+            <li>Aim for balanced meals with enough calories, protein, and healthy fats.</li>
+            <li>Track your weight and energy levels over time.</li>
+        </ul>
+    </div>
+
+    <a href="{% url 'bmi_form' %}" class="block text-center text-sm text-sky-300 hover:text-sky-200">
+        ← Go back and try again
+    </a>
+</div>
+{% endblock %}

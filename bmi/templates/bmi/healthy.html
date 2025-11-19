@@ -1,0 +1,25 @@
+{% extends "bmi/base.html" %}
+{% block title %}Healthy Result{% endblock %}
+
+{% block content %}
+<div class="space-y-4">
+    <div class="text-center">
+        <p class="text-sm text-slate-400 mb-1">Your BMI</p>
+        <p class="text-4xl font-bold text-emerald-300">{{ result }}</p>
+        <p class="mt-2 text-lg text-emerald-200">Category: Healthy</p>
+    </div>
+
+    <div class="bg-slate-800 rounded-xl p-4 border border-emerald-500/50">
+        <h2 class="font-semibold mb-2 text-emerald-200">Nice work 🎉</h2>
+        <ul class="list-disc list-inside text-sm text-slate-200 space-y-1">
+            <li>Maintain regular physical activity you enjoy.</li>
+            <li>Keep eating balanced meals with a mix of nutrients.</li>
+            <li>Check your BMI occasionally, but don’t obsess over the number.</li>
+        </ul>
+    </div>
+
+    <a href="{% url 'bmi_form' %}" class="block text-center text-sm text-sky-300 hover:text-sky-200">
+        ← Calculate again
+    </a>
+</div>
+{% endblock %}

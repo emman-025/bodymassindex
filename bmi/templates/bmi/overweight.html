@@ -1,0 +1,25 @@
+{% extends "bmi/base.html" %}
+{% block title %}Overweight Result{% endblock %}
+
+{% block content %}
+<div class="space-y-4">
+    <div class="text-center">
+        <p class="text-sm text-slate-400 mb-1">Your BMI</p>
+        <p class="text-4xl font-bold text-red-300">{{ result }}</p>
+        <p class="mt-2 text-lg text-red-200">Category: Overweight / Obese</p>
+    </div>
+
+    <div class="bg-slate-800 rounded-xl p-4 border border-red-500/50">
+        <h2 class="font-semibold mb-2 text-red-200">Recommendations</h2>
+        <ul class="list-disc list-inside text-sm text-slate-200 space-y-1">
+            <li>Consider speaking with a healthcare professional for personalised advice.</li>
+            <li>Focus on sustainable changes: more movement, less ultra-processed food.</li>
+            <li>Set small, realistic goals and track your progress over time.</li>
+        </ul>
+    </div>
+
+    <a href="{% url 'bmi_form' %}" class="block text-center text-sm text-sky-300 hover:text-sky-200">
+        ← Recalculate BMI
+    </a>
+</div>
+{% endblock %}

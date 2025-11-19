@@ -1,0 +1,22 @@
+<!-- bmi/templates/bmi/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}BMI Calculator{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-slate-950 text-slate-100 flex items-center justify-center">
+    <div class="w-full max-w-xl mx-auto p-6">
+        <div class="bg-slate-900 rounded-2xl shadow-lg p-6 border border-slate-800">
+            <h1 class="text-2xl font-semibold mb-4 text-center text-sky-300">
+                BMI Calculator
+            </h1>
+            {% block content %}{% endblock %}
+        </div>
+        <p class="mt-4 text-center text-xs text-slate-500">
+            Built with Django & Tailwind
+        </p>
+    </div>
+</body>
+</html>
